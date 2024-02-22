@@ -1,5 +1,8 @@
 
+import 'package:bmi_calculator/icon_content.dart';
+import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //color, height define
 const bottomContainerHeight = 80.0;
@@ -37,34 +40,52 @@ class _InputPageState extends State<InputPage> {
                Expanded(
                 child: ReusableCard(
                   colour: activeCardColour,
+                   cardChild: IconContent(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
+                   ),
                   ),
 
                ),
                 Expanded(
                   child:ReusableCard(
                     colour:  activeCardColour,
+                     cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
+
+                       label: 'FEMALE',
+                       ),
                     ),
                    ),
             ],
           ),
           ),
+
+
            Expanded(
             child: ReusableCard(
               colour: activeCardColour,
+               cardChild: Column(),
               ),
-                   ),
+            ),
+
+
 
              Expanded(
               child: Row(
             children:<Widget> [
                Expanded(
                 child: ReusableCard(
-                  colour:  activeCardColour,
+                  colour:  activeCardColour, 
+                  cardChild: Column(),
                   ),
                    ),
+
+
                 Expanded(
                   child:ReusableCard(
-                    colour: activeCardColour, 
+                    colour: activeCardColour,
+                     cardChild: Column(), 
                     ),
                    ),
 
@@ -74,6 +95,7 @@ class _InputPageState extends State<InputPage> {
           ),
           //i================================================
           // it used for bellow red shape container
+            
              Container(
               color: bottomContainerColour,
               margin: EdgeInsets.only(top: 10),
@@ -89,27 +111,4 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-//re use row collunm functionality
-class ReusableCard extends StatelessWidget {
-  //when use re useable widget we remove const key for customize owon
 
-  ReusableCard({required this.colour});
-   final Color colour;
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-                 
-     margin: EdgeInsets.all(15.0),
-     decoration: BoxDecoration(
-       color: colour,
-      borderRadius: BorderRadius.circular(10.0),
-     ),
-     );
-  }
-}
-
-
- 
