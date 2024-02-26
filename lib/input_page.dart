@@ -13,7 +13,7 @@ const bottomContainerColour = Color(0xFFEB1555);
   enum Gender{
     male,
     female,
-  }
+}
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -24,7 +24,16 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
+// Gender selectedGender now working so we use late 
+//when using late late initial error 
+//thats why we use  initState()  mathod
 late Gender selectedGender;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedGender = Gender.male; // Initialize with a default value
+  }
 
     
   @override
@@ -47,39 +56,34 @@ late Gender selectedGender;
             child: Row(
             children:<Widget> [
                Expanded(
-                child: GestureDetector(
-                 onTap:() {
-                   setState(() {
-                      selectedGender = Gender.male;
-                   });
-                //  print('male taped');
+                child: ReusableCard(
+                  onPress: (){
+                    setState(() {
+                      selectedGender =Gender.male;
+                    });
                   },
-                  child: ReusableCard(
-                    colour: selectedGender == Gender.male ? activeCardColour:inactiveColour,
-                     cardChild: IconContent(
-                      icon: FontAwesomeIcons.mars,
-                      label: 'MALE',
-                     ),
-                    ),
-                ),
+                  colour: selectedGender == Gender.male ? activeCardColour:inactiveColour,
+                   cardChild: IconContent(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
+                   ),
+                  ),
 
                ),
                 Expanded(
-                  child:GestureDetector(
-                    onTap: () {
+                  child:ReusableCard(
+                     onPress: (){
                       setState(() {
-                        selectedGender = Gender.female;
+                        selectedGender =Gender.female;
                       });
-                    },
-                    child: ReusableCard(
-                      colour:  selectedGender == Gender.female ? activeCardColour:inactiveColour,
-                       cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
+                     },
+                    colour:  selectedGender == Gender.female ? activeCardColour:inactiveColour,
+                     cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
                   
-                         label: 'FEMALE',
-                         ),
-                      ),
-                  ),
+                       label: 'FEMALE',
+                       ),
+                    ),
                    ),
             ],
           ),
@@ -88,6 +92,7 @@ late Gender selectedGender;
 
            Expanded(
             child: ReusableCard(
+               onPress: (){},
               colour: activeCardColour,
                cardChild: Column(),
               ),
@@ -100,6 +105,7 @@ late Gender selectedGender;
             children:<Widget> [
                Expanded(
                 child: ReusableCard(
+                   onPress: (){},
                   colour:  activeCardColour, 
                   cardChild: Column(),
                   ),
@@ -108,6 +114,7 @@ late Gender selectedGender;
 
                 Expanded(
                   child:ReusableCard(
+                     onPress: (){},
                     colour: activeCardColour,
                      cardChild: Column(), 
                     ),
