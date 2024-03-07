@@ -1,14 +1,11 @@
 
+import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-//color, height define
-const bottomContainerHeight = 80.0;
-const  activeCardColour =  Color(0xFF1D1E33);
-const inactiveColour = Color(0xFF111328);
-const bottomContainerColour = Color(0xFFEB1555);
+
 
   enum Gender{
     male,
@@ -28,6 +25,8 @@ class _InputPageState extends State<InputPage> {
 //when using late late initial error 
 //thats why we use  initState()  mathod
 late Gender selectedGender;
+
+int height =180;
 
   @override
   void initState() {
@@ -50,6 +49,7 @@ late Gender selectedGender;
             ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget> [
 
           Expanded(
@@ -62,7 +62,7 @@ late Gender selectedGender;
                       selectedGender =Gender.male;
                     });
                   },
-                  colour: selectedGender == Gender.male ? activeCardColour:inactiveColour,
+                  colour: selectedGender == Gender.male ? kActiveCardColour:kInactiveColour,
                    cardChild: IconContent(
                     icon: FontAwesomeIcons.mars,
                     label: 'MALE',
@@ -77,7 +77,7 @@ late Gender selectedGender;
                         selectedGender =Gender.female;
                       });
                      },
-                    colour:  selectedGender == Gender.female ? activeCardColour:inactiveColour,
+                    colour:  selectedGender == Gender.female ? kActiveCardColour:kInactiveColour,
                      cardChild: IconContent(
                       icon: FontAwesomeIcons.venus,
                   
@@ -93,8 +93,45 @@ late Gender selectedGender;
            Expanded(
             child: ReusableCard(
                onPress: (){},
-              colour: activeCardColour,
-               cardChild: Column(),
+              colour: kActiveCardColour,
+               cardChild:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: <Widget>[
+                        Text(
+                          height.toString(),
+                          style:kNumberTextStyle
+                        ),
+                        Text(
+                          'cm',
+                          style: kLabelTextStyle,
+
+                        ),
+
+                      ],
+                    ),
+                    Slider(
+                      value:height.toDouble(),
+                      min: 120,
+                      max: 220,
+                      activeColor: Color(0xFFEB1555),
+                      inactiveColor: Color(0xFF8D8E98),
+                      onChanged: (double newValue) {
+                        setState(() {
+                           height = newValue.round();
+                        });
+                      },  
+                    ),
+                ],
+               ) ,
               ),
             ),
 
@@ -106,7 +143,7 @@ late Gender selectedGender;
                Expanded(
                 child: ReusableCard(
                    onPress: (){},
-                  colour:  activeCardColour, 
+                  colour:  kActiveCardColour, 
                   cardChild: Column(),
                   ),
                    ),
@@ -115,7 +152,7 @@ late Gender selectedGender;
                 Expanded(
                   child:ReusableCard(
                      onPress: (){},
-                    colour: activeCardColour,
+                    colour: kActiveCardColour,
                      cardChild: Column(), 
                     ),
                    ),
@@ -128,10 +165,10 @@ late Gender selectedGender;
           // it used for bellow red shape container
             
              Container(
-              color: bottomContainerColour,
+              color: kBottomContainerColour,
               margin: EdgeInsets.only(top: 10),
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kBottomContainerHeight,
              //Colors.green,
             ),
         
