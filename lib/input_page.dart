@@ -27,6 +27,7 @@ class _InputPageState extends State<InputPage> {
 late Gender selectedGender;
 
 int height =180;
+int weight = 60;
 
   @override
   void initState() {
@@ -136,9 +137,9 @@ int height =180;
                       ),
                       child: Slider(
                         value:height.toDouble(),
-                        min: 120,
-                        max: 220,
-                        activeColor: Colors.white,
+                        min: 120.0,
+                        max: 220.0,
+                        inactiveColor: Color(0xFF8D8E98),
                         onChanged: (double newValue) {
                           setState(() {
                              height = newValue.round();
@@ -160,7 +161,43 @@ int height =180;
                 child: ReusableCard(
                    onPress: (){},
                   colour:  kActiveCardColour, 
-                  cardChild: Column(),
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Widget',
+                        style: kLabelTextStyle,
+                        ),
+                        Text(
+                        weight.toString(),
+                        style: kNumberTextStyle,
+                        ),
+                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            backgroundColor: Color(0xFF4C4F5E),
+                            
+                            child: Icon(Icons.add),
+                            onPressed: () {
+                              
+                            },
+                          ),
+                          SizedBox(width: 10,),
+
+                           FloatingActionButton(
+                            backgroundColor: Color(0xFF4C4F5E),
+                            
+                            child: Icon(Icons.add),
+                            onPressed: () {
+                              
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                   ),
                    ),
 
