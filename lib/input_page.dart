@@ -29,6 +29,8 @@ late Gender selectedGender;
 int height =180;
 int weight = 60;
 
+int age = 20;
+
   @override
   void initState() {
     super.initState();
@@ -207,7 +209,41 @@ int weight = 60;
                   child:ReusableCard(
                      onPress: (){},
                     colour: kActiveCardColour,
-                     cardChild: Column(), 
+                     cardChild: Column(
+            
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Age',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+
+                        Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(icon: FontAwesomeIcons.minus, 
+                          onPressed: (){
+                            setState(() {
+                              age--;
+                            });
+                          }
+                          ),
+                          SizedBox(width: 10),
+                           RoundIconButton(icon: FontAwesomeIcons.plus, 
+                          onPressed: (){
+                            setState(() {
+                              age++;
+                            });
+                          }
+                          ),
+                        ],
+                        ),
+                      ],
+                     ), 
                     ),
                    ),
 
