@@ -1,6 +1,7 @@
 
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/icon_content.dart';
+import 'package:bmi_calculator/results_page.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -175,29 +176,31 @@ int age = 20;
                         style: kNumberTextStyle,
                         ),
                       
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                        
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          
+                           RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            onPressed: (){
+                              setState(() {
+                                weight--;
+                              });
+                            },
+                            ),
+                            SizedBox(width: 10,),
+                      
                          RoundIconButton(
-                          icon: FontAwesomeIcons.minus,
-                          onPressed: (){
-                            setState(() {
-                              weight--;
-                            });
-                          },
-                          ),
-                          SizedBox(width: 10,),
-
-                       RoundIconButton(
-                          icon: FontAwesomeIcons.plus,
-                          onPressed: (){
-                            setState(() {
-                              weight++;
-                            });
-                          },
-                          ),
-                        ],
+                            icon: FontAwesomeIcons.plus,
+                            onPressed: (){
+                              setState(() {
+                                weight++;
+                              });
+                            },
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -222,25 +225,27 @@ int age = 20;
                           style: kNumberTextStyle,
                         ),
 
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          RoundIconButton(icon: FontAwesomeIcons.minus, 
-                          onPressed: (){
-                            setState(() {
-                              age--;
-                            });
-                          }
+                        Expanded(
+                          child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(icon: FontAwesomeIcons.minus, 
+                            onPressed: (){
+                              setState(() {
+                                age--;
+                              });
+                            }
+                            ),
+                            SizedBox(width: 10),
+                             RoundIconButton(icon: FontAwesomeIcons.plus, 
+                            onPressed: (){
+                              setState(() {
+                                age++;
+                              });
+                            }
+                            ),
+                          ],
                           ),
-                          SizedBox(width: 10),
-                           RoundIconButton(icon: FontAwesomeIcons.plus, 
-                          onPressed: (){
-                            setState(() {
-                              age++;
-                            });
-                          }
-                          ),
-                        ],
                         ),
                       ],
                      ), 
@@ -254,13 +259,26 @@ int age = 20;
           //i================================================
           // it used for bellow red shape container
             
-             Container(
-              color: kBottomContainerColour,
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-             //Colors.green,
-            ),
+             GestureDetector(
+              onTap: () {
+                //navigate on page to another page
+                 Navigator.push(
+               context, MaterialPageRoute(
+                builder: (context) => ResultsPage()),
+    );
+  },
+            
+               child: Container(
+                child:  Center(
+                  child: Text('Calculate'),
+                  ),
+                color: kBottomContainerColour,
+                margin: EdgeInsets.only(top: 10),
+                width: double.infinity,
+                height: kBottomContainerHeight,
+               //Colors.green,
+                         ),
+             ),
         
             
         ],
