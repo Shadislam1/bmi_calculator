@@ -7,7 +7,7 @@ import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:bmi_calculator/calculator_brain.dart';
 
 
   enum Gender{
@@ -46,8 +46,8 @@ int age = 20;
     return Scaffold(
     
       appBar: AppBar(
-      backgroundColor: Color(0xFF0A0E21),
-        title: Center(
+      backgroundColor: const Color(0xFF0A0E21),
+        title: const Center(
           child: Text(
             'BMI Calculator',
             
@@ -103,7 +103,7 @@ int age = 20;
                cardChild:Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'HEIGHT',
                     style: kLabelTextStyle,
                     ),
@@ -116,7 +116,7 @@ int age = 20;
                           height.toString(),
                           style:kNumberTextStyle
                         ),
-                        Text(
+                        const Text(
                           'cm',
                           style: kLabelTextStyle,
 
@@ -128,15 +128,15 @@ int age = 20;
                     
                     SliderTheme(
                       data: SliderTheme.of(context).copyWith(
-                        inactiveTrackColor: Color(0xFF8D8E98),
+                        inactiveTrackColor: const Color(0xFF8D8E98),
                         activeTrackColor: Colors.white,
-                        thumbColor: Color(0xFFEB1555),
-                        overlayColor: Color(0x29EB1555),
+                        thumbColor: const Color(0xFFEB1555),
+                        overlayColor: const Color(0x29EB1555),
                         thumbShape: 
-                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                          const RoundSliderThumbShape(enabledThumbRadius: 15.0),
 
                        overlayShape: 
-                          RoundSliderOverlayShape(
+                          const RoundSliderOverlayShape(
                           overlayRadius: 20.0,
                         ),
                       ),
@@ -144,7 +144,7 @@ int age = 20;
                         value:height.toDouble(),
                         min: 120.0,
                         max: 220.0,
-                        inactiveColor: Color(0xFF8D8E98),
+                        inactiveColor: const Color(0xFF8D8E98),
                         onChanged: (double newValue) {
                           setState(() {
                              height = newValue.round();
@@ -169,7 +169,7 @@ int age = 20;
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Widget',
                         style: kLabelTextStyle,
                         ),
@@ -191,7 +191,7 @@ int age = 20;
                               });
                             },
                             ),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                       
                          RoundIconButton(
                             icon: FontAwesomeIcons.plus,
@@ -218,7 +218,7 @@ int age = 20;
             
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           'Age',
                           style: kLabelTextStyle,
                         ),
@@ -238,7 +238,7 @@ int age = 20;
                               });
                             }
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                              RoundIconButton(icon: FontAwesomeIcons.plus, 
                             onPressed: (){
                               setState(() {
@@ -264,13 +264,20 @@ int age = 20;
              BottomButton(
               buttonTitle: 'Calculate',
               onTap:() {
+                CalculatorBrain cale = CalculatorBrain(height: height, weight: weight);
        //navigate on page to another page
         Navigator.push(
       context, MaterialPageRoute(
-       builder: (context) => ResultsPage()),
+       builder: (context) => ResultsPage(
+        bmiResult:cale.CalculateBMI(),
+        resultText: cale.getResult(),
+        interpretation: cale.getInterpretation(),
+       )
+       
+       ),
     );
   }, 
-             ),
+  ),
         
             
         ],

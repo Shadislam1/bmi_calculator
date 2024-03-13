@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 
 class RoundIconButton extends StatelessWidget {
-   RoundIconButton({required this.icon, required this.onPressed});
+   const RoundIconButton({ required this.icon, required this.onPressed});
 
   final  IconData icon;
   final VoidCallback onPressed;
@@ -16,8 +16,8 @@ class RoundIconButton extends StatelessWidget {
       onPressed: onPressed,
       elevation: 0.0,
       
-      fillColor: Color(0xFF4C4F5E),
-      constraints: BoxConstraints.tightFor(
+      fillColor: const Color(0xFF4C4F5E),
+      constraints: const BoxConstraints.tightFor(
         width: 56.0,
         height: 56.0,
       ),
